@@ -1,0 +1,36 @@
+CREATE TABLE users (
+	user_id int PRIMARY KEY auto_increment,
+	email VARCHAR(100) not null,
+	pass_word VARCHAR(100) not null,
+	name VARCHAR(100) not null,
+	age int not null,
+	avatar VARCHAR(255)
+)
+
+CREATE TABLE pictures (
+	picture_id int PRIMARY key auto_increment,
+	name VARCHAR(100) not NULL,
+	linkPicture VARCHAR(255) NOT NULL,
+	description VARCHAR(255),
+	user_id int,
+	FOREIGN key (user_id) REFERENCES users(user_id)
+)
+
+CREATE TABLE comments (
+	comment_id int PRIMARY key auto_increment,
+	user_id int,
+	FOREIGN KEY (user_id) REFERENCES users(user_id),
+	picture_id int,
+	FOREIGN KEY (picture_id) REFERENCES pictures(picture_id),
+	date_comment date,
+	content VARCHAR(255)
+)
+
+CREATE TABLE save_pictures (
+	user_id int,
+	FOREIGN KEY (user_id) REFERENCES users(user_id),
+	picture_id int,
+	FOREIGN KEY (picture_id) REFERENCES pictures(picture_id),
+	date_save DATE,
+	PRIMARY KEY (user_id,picture_id)
+)
