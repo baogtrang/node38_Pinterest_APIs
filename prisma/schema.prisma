@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model comments {
+  comment_id   Int       @id @default(autoincrement())
+  user_id      Int?
+  picture_id   Int?
+  date_comment DateTime? @db.Date
+  content      String?   @db.VarChar(255)
+  users        users?    @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "comments_ibfk_1")
+  pictures     pictures? @relation(fields: [picture_id], references: [picture_id], onDelete: NoAction, onUpdate: NoAction, map: "comments_ibfk_2")
+
+  @@index([picture_id], map: "picture_id")
+  @@index([user_id], map: "user_id")
+}
+
+model pictures {
+  picture_id    Int             @id @default(autoincrement())
+  name          String          @db.VarChar(100)
+  linkPicture   String          @db.VarChar(255)
+  description   String?         @db.VarChar(255)
+  user_id       Int?
+  comments      comments[]
+  users         users?          @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "pictures_ibfk_1")
+  save_pictures save_pictures[]
+
+  @@index([user_id], map: "user_id")
+}
+
+model save_pictures {
+  user_id    Int
+  picture_id Int
+  date_save  DateTime? @db.Date
+  users      users     @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "save_pictures_ibfk_1")
+  pictures   pictures  @relation(fields: [picture_id], references: [picture_id], onDelete: NoAction, onUpdate: NoAction, map: "save_pictures_ibfk_2")
+
+  @@id([user_id, picture_id])
+  @@index([picture_id], map: "picture_id")
+}
+
+model users {
+  user_id       Int             @id @default(autoincrement())
+  email         String          @db.VarChar(100)
+  pass_word     String          @db.VarChar(100)
+  name          String          @db.VarChar(100)
+  age           Int
+  avatar        String?         @db.VarChar(255)
+  comments      comments[]
+  pictures      pictures[]
+  save_pictures save_pictures[]
+}

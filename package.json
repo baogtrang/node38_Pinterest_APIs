@@ -1,0 +1,21 @@
+{
+  "name": "PhanNhutThai_Node38_Capstone_Express_ORM",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/thaidev13639/PhanNhutThai_Node38_Capstone_Express_ORM.git",
+  "author": "thaidev13639 <pnt0964413557@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mysql2": "^3.7.1",
+    "nodemon": "^3.0.3",
+    "prisma": "^5.8.1"
+  }
+}
