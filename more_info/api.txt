@@ -1,0 +1,12 @@
+Api SignUp: 
+http://localhost:3639/user/signup
+
+Avatar be null
+
+body : {
+    "email": "emailtest123@gmail.com",
+    "pass_word": "1234",
+    "name": "phan nhứt thái",
+    "age": 30,
+    "avatar": null
+}
