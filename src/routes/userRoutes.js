@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  handlUpdateUser,
   handleLogin,
   handleSignUp,
   handleUploadAvatar,
@@ -11,6 +12,12 @@ const userRoutes = express.Router();
 
 userRoutes.post("/login", handleLogin);
 userRoutes.post("/signup", handleSignUp);
-userRoutes.post("/upload_avatar", verifyToken, uploadCloud.single("file") , handleUploadAvatar);
+userRoutes.post(
+  "/upload_avatar",
+  verifyToken,
+  uploadCloud.single("file"),
+  handleUploadAvatar
+);
+userRoutes.put("/update_user", verifyToken, handlUpdateUser);
 
 export default userRoutes;

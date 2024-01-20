@@ -1,4 +1,4 @@
-Api SignUp: 
+Api SignUp: post 
 http://localhost:3639/user/signup
 
 Avatar be null
@@ -11,7 +11,8 @@ body : {
     "avatar": null
 }
 
-Api Login: 
+
+Api Login: post
 http://localhost:3639/user/login
 
 body: {
@@ -19,7 +20,9 @@ body: {
     "pass_word": 1234
 }
 
-Api UploadAvatar : 
+
+
+Api UploadAvatar: post 
 http://localhost:3639/user/upload_avatar
 
 headers: {
@@ -29,3 +32,18 @@ body: {
     file: your_avatar.file
 }
 
+
+
+Api UpdateUser: put
+http://localhost:3639/user/update_user
+
+headers: {
+    token: "your_token"
+}
+
+body: {
+    "email": null,           email default value null
+    "pass_word": 13639,      
+    "age": 31,
+    "name": "Phan Nhứt Thái"
+}

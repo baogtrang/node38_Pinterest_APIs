@@ -11,7 +11,7 @@ const handleLogin = async (req, res) => {
     },
   });
   if (!dataEmail) {
-    res.status(404).send("The user with this email not exsited");
+    res.status(404).send("Email not correct");
     return;
   }
 
@@ -36,7 +36,7 @@ const handleSignUp = async (req, res) => {
   const partten = /^\w+\@(gmail)[\.\w+]+$/;
 
   for (const key in data) {
-    if (data[key] === "") {
+    if (data[key] === "" || data.avatar !== null) {
       res
         .status(404)
         .send(
@@ -103,4 +103,45 @@ const handleUploadAvatar = async (req, res) => {
 
   res.status(201).send("Update Avatar Success");
 };
-export { handleLogin, handleSignUp, handleUploadAvatar };
+
+const handlUpdateUser = async (req, res) => {
+  let data = req.body;
+  let newData = {};
+
+  if (data.email !== null) {
+    res.status(400).send("Email cann't edit, you can set email: null");
+    return;
+  }
+  if (Number(data.age) !== data.age || data.name !== String(data.name)) {
+    res.status(400).send("Age Should be Number and Name Should be String");
+    return;
+  }
+
+  for (let key in data) {
+    if (data[key] !== null && data[key] !== "") {
+      newData[key] = data[key];
+    }
+  }
+
+  newData.pass_word = bcrypt.hashSync(String(newData.pass_word), 10);
+
+  let { token } = req.headers;
+  let dataEmail = checkToken(token);
+  let { email } = dataEmail.deCode;
+
+  let dataUserID = await prisma.users.findFirst({
+    where: {
+      email: email.email,
+    },
+  });
+
+  await prisma.users.update({
+    where: {
+      user_id: dataUserID.user_id,
+    },
+    data: newData,
+  });
+
+  res.status(201).send("Update Success");
+};
+export { handleLogin, handleSignUp, handleUploadAvatar, handlUpdateUser };
