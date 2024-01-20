@@ -59,7 +59,7 @@ const handleSignUp = async (req, res) => {
   });
 
   if (dataUser) {
-    res.status(404).send("The user with this email already exists");
+    res.status(404).send("This email already exists");
     return;
   }
 
@@ -112,7 +112,10 @@ const handlUpdateUser = async (req, res) => {
     res.status(400).send("Email cann't edit, you can set email: null");
     return;
   }
-  if (Number(data.age) !== data.age || data.name !== String(data.name)) {
+  if (
+    (Number(data.age) !== data.age && data.age !== null) ||
+    (String(data.name) !== data.name && data.name !== null)
+  ) {
     res.status(400).send("Age Should be Number and Name Should be String");
     return;
   }
@@ -123,7 +126,9 @@ const handlUpdateUser = async (req, res) => {
     }
   }
 
-  newData.pass_word = bcrypt.hashSync(String(newData.pass_word), 10);
+  if (newData.pass_word) {
+    newData.pass_word = bcrypt.hashSync(String(newData.pass_word), 10);
+  }
 
   let { token } = req.headers;
   let dataEmail = checkToken(token);
@@ -131,7 +136,7 @@ const handlUpdateUser = async (req, res) => {
 
   let dataUserID = await prisma.users.findFirst({
     where: {
-      email: email.email,
+      email: email,
     },
   });
 

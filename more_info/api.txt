@@ -1,4 +1,4 @@
-Api SignUp: post 
+Api SignUp: POST 
 http://localhost:3639/user/signup
 
 Avatar be null
@@ -12,7 +12,7 @@ body : {
 }
 
 
-Api Login: post
+Api Login: POST
 http://localhost:3639/user/login
 
 body: {
@@ -22,7 +22,7 @@ body: {
 
 
 
-Api UploadAvatar: post 
+Api UploadAvatar: POST 
 http://localhost:3639/user/upload_avatar
 
 headers: {
@@ -34,7 +34,7 @@ body: {
 
 
 
-Api UpdateUser: put
+Api UpdateUser: PUT
 http://localhost:3639/user/update_user
 
 headers: {
@@ -47,3 +47,8 @@ body: {
     "age": 31,
     "name": "Phan Nhứt Thái"
 }
+
+
+
+Api GetListPicture:  GET
+http://localhost:3639/picture/get_list
