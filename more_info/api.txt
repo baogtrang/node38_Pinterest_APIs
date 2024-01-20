@@ -10,3 +10,22 @@ body : {
     "age": 30,
     "avatar": null
 }
+
+Api Login: 
+http://localhost:3639/user/login
+
+body: {
+    "email": "email@gmail.com",
+    "pass_word": 1234
+}
+
+Api UploadAvatar : 
+http://localhost:3639/user/upload_avatar
+
+headers: {
+    token: "your_token"
+}
+body: {
+    file: your_avatar.file
+}
+
