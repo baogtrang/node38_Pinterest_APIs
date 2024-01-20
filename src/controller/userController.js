@@ -1,6 +1,6 @@
-import prisma from "../config/configConnectDB.js";
+import prisma from "../config/connect.config.js";
 import bcrypt from "bcrypt";
-import { createToken } from "../config/jwt.js";
+import { checkToken, createToken } from "../config/jwt.js";
 
 const handleLogin = async (req, res) => {
   let { email, pass_word } = req.body;
@@ -23,7 +23,7 @@ const handleLogin = async (req, res) => {
     res.status(404).send("PassWord not correct");
     return;
   }
-  
+
   let payload = {
     email,
   };
@@ -76,4 +76,31 @@ const handleSignUp = async (req, res) => {
   res.status(201).send("Create User Success");
 };
 
-export { handleLogin, handleSignUp };
+const handleUploadAvatar = async (req, res) => {
+  const img = req.file;
+  if (!img) {
+    res.status(400).send("pls!! fill in valid Img");
+    return;
+  }
+
+  let { token } = req.headers;
+  let dataEmail = checkToken(token);
+  let { email } = dataEmail.deCode;
+  const dataUserID = await prisma.users.findFirst({
+    where: {
+      email,
+    },
+  });
+  let { user_id } = dataUserID;
+  await prisma.users.update({
+    where: {
+      user_id,
+    },
+    data: {
+      avatar: img.path,
+    },
+  });
+
+  res.status(201).send("Update Avatar Success");
+};
+export { handleLogin, handleSignUp, handleUploadAvatar };
