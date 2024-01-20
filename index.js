@@ -10,9 +10,9 @@ app.use(express.static("."));
 app.use(cors());
 app.use(rootRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Connect BE Success");
-});
+// app.get("/", (req, res) => {
+//   res.send("Connect BE Success");
+// });
 
 app.listen(port, () => {
   console.log(`Start Working BE With Port : ${port}`);
