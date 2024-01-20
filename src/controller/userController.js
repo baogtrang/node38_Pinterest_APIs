@@ -1,12 +1,40 @@
 import prisma from "../config/configConnectDB.js";
 import bcrypt from "bcrypt";
+import { createToken } from "../config/jwt.js";
 
-const handleLogin = (req, res) => {
-  res.send("Login.....");
+const handleLogin = async (req, res) => {
+  let { email, pass_word } = req.body;
+
+  let dataEmail = await prisma.users.findFirst({
+    where: {
+      email,
+    },
+  });
+  if (!dataEmail) {
+    res.status(404).send("The user with this email not exsited");
+    return;
+  }
+
+  let passwordDecode = bcrypt.compareSync(
+    String(pass_word),
+    dataEmail.pass_word
+  );
+  if (!passwordDecode) {
+    res.status(404).send("PassWord not correct");
+    return;
+  }
+  
+  let payload = {
+    email,
+  };
+  let token = createToken(payload);
+  res.status(200).send(token);
 };
 
 const handleSignUp = async (req, res) => {
   let data = req.body;
+  const partten = /^\w+\@(gmail)[\.\w+]+$/;
+
   for (const key in data) {
     if (data[key] === "") {
       res
@@ -18,6 +46,11 @@ const handleSignUp = async (req, res) => {
     }
   }
 
+  if (!data.email.match(partten)) {
+    res.status(404).send("Pls!! enter correct type email");
+    return;
+  }
+
   let { email, pass_word, name, age, avatar } = req.body;
   let dataUser = await prisma.users.findFirst({
     where: {
@@ -26,7 +59,7 @@ const handleSignUp = async (req, res) => {
   });
 
   if (dataUser) {
-    res.status(404).send("User had email is exsited");
+    res.status(404).send("The user with this email already exists");
     return;
   }
 
@@ -42,4 +75,5 @@ const handleSignUp = async (req, res) => {
   });
   res.status(201).send("Create User Success");
 };
+
 export { handleLogin, handleSignUp };
