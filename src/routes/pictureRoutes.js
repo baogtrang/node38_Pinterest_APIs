@@ -1,8 +1,12 @@
 import express from "express";
-import { hanldeGetListPic } from "../controller/pictureController.js";
+import {
+  handleListByName,
+  hanldeGetListPic,
+} from "../controller/pictureController.js";
 
 const pictureRoutes = express.Router();
 
-pictureRoutes.use("/get_list", hanldeGetListPic);
+pictureRoutes.get("/get-list", hanldeGetListPic);
+pictureRoutes.get("/list-by-name", handleListByName);
 
 export default pictureRoutes;

@@ -7,7 +7,7 @@ USER :
 
 Picture :  
 + get_list_picture -GET- (check_by_Thái)   (ko cần login)
-+ get_list_picture_by_namePicture -GET-	(ko cần login)
++ get_list_picture_by_namePicture -GET-  (check_by_Thái)	(ko cần login)
 + get_detailUser_And_detailPicture_by_pictureId   -GET-   (ko cần login ko show password)
 + get_detailUser_by_pictureId   -GET-    (ko cần login nhưng không show password)
 + add_picture_by_user    -POST-	(cần login check token)

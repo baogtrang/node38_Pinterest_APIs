@@ -18,6 +18,6 @@ userRoutes.post(
   uploadCloud.single("file"),
   handleUploadAvatar
 );
-userRoutes.put("/update_user", verifyToken, handlUpdateUser);
+userRoutes.put("/update-user", verifyToken, handlUpdateUser);
 
 export default userRoutes;
