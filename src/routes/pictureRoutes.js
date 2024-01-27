@@ -1,6 +1,7 @@
 import express from "express";
 import {
   handleCreatePictureByUser,
+  handleDeletePic,
   handleDetailPicAndUser,
   handleListByName,
   handleListCreateByUser,
@@ -19,6 +20,11 @@ pictureRoutes.post(
   "/create-picture-by-user",
   verifyToken,
   handleCreatePictureByUser
+);
+pictureRoutes.delete(
+  "/delete-picture-by-user/:picture_id",
+  verifyToken,
+  handleDeletePic
 );
 
 export default pictureRoutes;

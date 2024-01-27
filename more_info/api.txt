@@ -78,3 +78,10 @@ body: {                               valid cannot not null, "", undefine, !== s
     "description": "Hay lắm",
     "linkPicture": "picture.png"
 }
+
+Api delete_picture_by_user: DELETE (need login)
+http://localhost:3639/picture/delete-picture-by-user/picture_id
+
+headers: {
+    token: "your_token"
+}
