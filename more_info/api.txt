@@ -35,7 +35,7 @@ body: {
 
 
 Api UpdateUser: PUT
-http://localhost:3639/user/update_user
+http://localhost:3639/user/update-user
 
 headers: {
     token: "your_token"
@@ -51,4 +51,7 @@ body: {
 
 
 Api GetListPicture:  GET
-http://localhost:3639/picture/get_list
+http://localhost:3639/picture/get-list
+
+Api GetListPictureByName: GET
+http://localhost:3639/picture/list-by-name?fillter=keywork
