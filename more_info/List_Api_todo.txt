@@ -1,0 +1,24 @@
+USER : 
++ SingUp -POST- (check_by_Thái)
++ Login -POST- (check_by_Thái)
++ UpdateUser -POST- (check_by_Thái)
++ UploadAvatar -POST- (check_by_Thái) (làm thêm)
+
+
+Picture :  
++ get_list_picture -GET- (check_by_Thái)   (ko cần login)
++ get_list_picture_by_namePicture -GET-	(ko cần login)
++ get_detailUser_And_detailPicture_by_pictureId   -GET-   (ko cần login ko show password)
++ get_detailUser_by_pictureId   -GET-    (ko cần login nhưng không show password)
++ add_picture_by_user    -POST-	(cần login check token)
++ get_listPicture_by_userID   -GET-    (cần login check token)
++ delete_pictureID_by_userID   -DELETE-     (cần login check token)
+
+Comment :  
++ get_detailComment_by_pictureId   -GET-   (ko cần login hay check token)
++ add_comment_picture_by_user   -POST-   (cần login check token)
+
+
+Save_Picture :  
++ get_detailSave_picture_by_user  -GET- (cần login check token, show User có id ảnh cần tìm)
++ get_listPicture_save_by_userid   -GET-  (cần login check token)

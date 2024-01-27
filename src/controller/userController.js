@@ -23,9 +23,10 @@ const handleLogin = async (req, res) => {
     res.status(404).send("PassWord not correct");
     return;
   }
-
+  let user_id = dataEmail.user_id;
   let payload = {
     email,
+    user_id,
   };
   let token = createToken(payload);
   res.status(200).send(token);
@@ -38,7 +39,7 @@ const handleSignUp = async (req, res) => {
   for (const key in data) {
     if (data[key] === "" || data.avatar !== null) {
       res
-        .status(404)
+        .status(400)
         .send(
           "Pls!! Fill in all information, avatar set null and can be upload later"
         );
@@ -47,7 +48,7 @@ const handleSignUp = async (req, res) => {
   }
 
   if (!data.email.match(partten)) {
-    res.status(404).send("Pls!! enter correct type email");
+    res.status(400).send("Pls!! enter correct type email");
     return;
   }
 
@@ -59,7 +60,7 @@ const handleSignUp = async (req, res) => {
   });
 
   if (dataUser) {
-    res.status(404).send("This email already exists");
+    res.status(400).send("This email already exists");
     return;
   }
 
@@ -85,13 +86,7 @@ const handleUploadAvatar = async (req, res) => {
 
   let { token } = req.headers;
   let dataEmail = checkToken(token);
-  let { email } = dataEmail.deCode;
-  const dataUserID = await prisma.users.findFirst({
-    where: {
-      email,
-    },
-  });
-  let { user_id } = dataUserID;
+  let { user_id } = dataEmail.deCode;
   await prisma.users.update({
     where: {
       user_id,
@@ -108,7 +103,7 @@ const handlUpdateUser = async (req, res) => {
   let data = req.body;
   let newData = {};
 
-  if (data.email !== null) {
+  if (data.email !== null && data.email) {
     res.status(400).send("Email cann't edit, you can set email: null");
     return;
   }
@@ -132,17 +127,11 @@ const handlUpdateUser = async (req, res) => {
 
   let { token } = req.headers;
   let dataEmail = checkToken(token);
-  let { email } = dataEmail.deCode;
-
-  let dataUserID = await prisma.users.findFirst({
-    where: {
-      email: email,
-    },
-  });
+  let { user_id } = dataEmail.deCode;
 
   await prisma.users.update({
     where: {
-      user_id: dataUserID.user_id,
+      user_id,
     },
     data: newData,
   });

@@ -1,3 +1,12 @@
+-- Clear Table
+-- SET FOREIGN_KEY_CHECKS = 0;
+-- DROP TABLE IF EXISTS users;
+-- DROP TABLE IF EXISTS pictures;
+-- DROP TABLE IF EXISTS comments;
+-- DROP TABLE IF EXISTS save_pictures;
+-- SET FOREIGN_KEY_CHECKS = 1;
+
+
 CREATE TABLE users (
 	user_id int PRIMARY KEY auto_increment,
 	email VARCHAR(100) not null,
@@ -13,24 +22,79 @@ CREATE TABLE pictures (
 	linkPicture VARCHAR(255) NOT NULL,
 	description VARCHAR(255),
 	user_id int,
-	FOREIGN key (user_id) REFERENCES users(user_id)
+	FOREIGN key (user_id) REFERENCES users(user_id) on DELETE CASCADE
 )
 
+INSERT INTO pictures (name, linkPicture, description, user_id) VALUES
+  ('Anime 1', 'https://example.com/anime1.jpg', 'Description 1', 1),
+  ('Anime 2', 'https://example.com/anime2.jpg', 'Description 2', 2),
+  ('Anime 3', 'https://example.com/anime3.jpg', 'Description 3', 3),
+  ('Anime 4', 'https://example.com/anime4.jpg', 'Description 4', 4),
+  ('Anime 5', 'https://example.com/anime5.jpg', 'Description 5', 5),
+  ('Anime 6', 'https://example.com/anime6.jpg', 'Description 6', 1),
+  ('Anime 7', 'https://example.com/anime7.jpg', 'Description 7', 2),
+  ('Anime 8', 'https://example.com/anime8.jpg', 'Description 8', 3),
+  ('Anime 9', 'https://example.com/anime9.jpg', 'Description 9', 4),
+  ('Anime 10', 'https://example.com/anime10.jpg', 'Description 10', 5),
+  ('Anime 11', 'https://example.com/anime11.jpg', 'Description 11', 1),
+  ('Anime 12', 'https://example.com/anime12.jpg', 'Description 12', 2),
+  ('Anime 13', 'https://example.com/anime13.jpg', 'Description 13', 3),
+  ('Anime 14', 'https://example.com/anime14.jpg', 'Description 14', 4),
+  ('Anime 15', 'https://example.com/anime15.jpg', 'Description 15', 5),
+  ('Anime 16', 'https://example.com/anime16.jpg', 'Description 16', 1),
+  ('Anime 17', 'https://example.com/anime17.jpg', 'Description 17', 2),
+  ('Anime 18', 'https://example.com/anime18.jpg', 'Description 18', 3),
+  ('Anime 19', 'https://example.com/anime19.jpg', 'Description 19', 4),
+  ('Anime 20', 'https://example.com/anime20.jpg', 'Description 20', 5)
+  
 CREATE TABLE comments (
 	comment_id int PRIMARY key auto_increment,
 	user_id int,
-	FOREIGN KEY (user_id) REFERENCES users(user_id),
+	FOREIGN KEY (user_id) REFERENCES users(user_id) on DELETE CASCADE,
 	picture_id int,
-	FOREIGN KEY (picture_id) REFERENCES pictures(picture_id),
+	FOREIGN KEY (picture_id) REFERENCES pictures(picture_id) on DELETE CASCADE,
 	date_comment date,
 	content VARCHAR(255)
 )
+INSERT INTO comments (user_id, picture_id, date_comment, content) VALUES
+(1, 1, '2024-01-27', 'Great picture!'),
+(2, 2, '2024-01-26', 'Nice shot!'),
+(3, 3, '2024-01-25', 'Beautiful scenery!'),
+(4, 4, '2024-01-24', 'I love the colors!'),
+(5, 1, '2024-01-23', 'Amazing composition!'),
+(1, 5, '2024-01-22', 'Well captured!'),
+(2, 7, '2024-01-21', 'Impressive photo!'),
+(3, 9, '2024-01-20', 'The lighting is perfect!'),
+(4, 11, '2024-01-19', 'Great angle!'),
+(5, 12, '2024-01-18', 'Fantastic shot!'),
+(1, 13, '2024-01-17', 'Awesome photo!'),
+(2, 14, '2024-01-16', 'I like the mood of this picture.'),
+(3, 15, '2024-01-15', 'Well done!'),
+(4, 19, '2024-01-14', 'Captivating image!'),
+(5, 20, '2024-01-13', 'Excellent photography skills!');
 
 CREATE TABLE save_pictures (
 	user_id int,
-	FOREIGN KEY (user_id) REFERENCES users(user_id),
+	FOREIGN KEY (user_id) REFERENCES users(user_id) on DELETE CASCADE,
 	picture_id int,
-	FOREIGN KEY (picture_id) REFERENCES pictures(picture_id),
+	FOREIGN KEY (picture_id) REFERENCES pictures(picture_id) on DELETE CASCADE,
 	date_save DATE,
 	PRIMARY KEY (user_id,picture_id)
 )
+
+INSERT INTO save_pictures (user_id, picture_id, date_save) VALUES
+(1, 1, '2024-01-27'),
+(2, 12, '2024-01-26'),
+(3, 2, '2024-01-25'),
+(4, 4, '2024-01-24'),
+(5, 5, '2024-01-23'),
+(1, 13, '2024-01-22'),
+(2, 17, '2024-01-21'),
+(3, 1, '2024-01-20'),
+(4, 2, '2024-01-19'),
+(5, 9, '2024-01-18'),
+(1, 10, '2024-01-17'),
+(2, 3, '2024-01-16'),
+(3, 9, '2024-01-15'),
+(4, 10, '2024-01-14'),
+(5, 12, '2024-01-13');
