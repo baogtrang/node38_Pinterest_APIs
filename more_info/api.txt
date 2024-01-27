@@ -20,6 +20,8 @@ body: {
     "pass_word": 1234
 }
 
+Api Detail-User: GET (need login)
+http://localhost:3639/user/detail-user
 
 
 Api UploadAvatar: POST (need login)
