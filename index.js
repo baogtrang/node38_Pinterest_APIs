@@ -1,9 +1,12 @@
 import express from "express";
 import cors from "cors";
 import rootRoutes from "./src/routes/rootRoutes.js";
+import dotenv from "dotenv";
+dotenv.config();
+let portBE = process.env.PORT_BE;
 
 const app = express();
-const port = 3639;
+const port = portBE;
 
 app.use(express.json());
 app.use(express.static("."));

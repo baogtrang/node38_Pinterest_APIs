@@ -5,7 +5,7 @@ dotenv.config();
 const secret_key = process.env.KEY_SECRET_JWT;
 
 const createToken = (data) => {
-  return jwt.sign(data, secret_key, { expiresIn: "1d" });
+  return jwt.sign(data, secret_key, { expiresIn: "5h" });
 };
 
 const checkToken = (token) => {
@@ -37,10 +37,11 @@ const verifyToken = async (req, res, next) => {
     return;
   }
 
-  let { email } = isValidToken.deCode;
+  let { email, user_id } = isValidToken.deCode;
   let dataEmail = await prisma.users.findFirst({
     where: {
       email,
+      user_id,
     },
   });
 
