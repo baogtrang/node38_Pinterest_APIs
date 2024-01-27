@@ -66,3 +66,15 @@ http://localhost:3639/picture/list-create-by-user
 headers: {
     token: "your_token"
 }
+
+Api create_picture_by_user: POST  (need login)
+http://localhost:3639/picture/create-picture-by-user
+
+headers: {
+    token: "your_token"
+}
+body: {                               valid cannot not null, "", undefine, !== string
+    "name": "3 Cô Gái" ,
+    "description": "Hay lắm",
+    "linkPicture": "picture.png"
+}

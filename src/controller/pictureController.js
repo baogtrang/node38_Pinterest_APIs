@@ -66,9 +66,47 @@ const handleListCreateByUser = async (req, res) => {
   res.status(200).send(resultData);
 };
 
+const handleCreatePictureByUser = async (req, res) => {
+  let { token } = req.headers;
+  let isValidUser = checkToken(token);
+  let { user_id } = isValidUser.deCode;
+
+  let data = req.body;
+  for (const key in data) {
+    if (
+      data[key] == "" ||
+      data[key] === null ||
+      data[key] !== String(data[key])
+    ) {
+      res.status(400).send("Pls!! Fill all valid, type String");
+      return;
+    }
+  }
+
+  let { name, description, linkPicture } = req.body;
+
+  if (!name || !description || !linkPicture) {
+    res.status(400).send("Pls!! Fill all valid, type String");
+    return;
+  }
+
+  let newData = {
+    name,
+    linkPicture,
+    description,
+    user_id,
+  };
+
+  await prisma.pictures.create({
+    data: newData,
+  });
+  res.status(201).send("Create Picture Success");
+};
+
 export {
   hanldeGetListPic,
   handleListByName,
   handleDetailPicAndUser,
   handleListCreateByUser,
+  handleCreatePictureByUser,
 };
