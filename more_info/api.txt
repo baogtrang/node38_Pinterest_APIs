@@ -55,3 +55,6 @@ http://localhost:3639/picture/get-list
 
 Api GetListPictureByName: GET
 http://localhost:3639/picture/list-by-name?fillter=keywork
+
+Api GetDetail_Picture_and_User_by_picture_id  GET
+http://localhost:3639/picture/detail-pictureAndUser/picture_id

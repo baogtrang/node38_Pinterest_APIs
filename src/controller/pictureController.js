@@ -18,4 +18,37 @@ const handleListByName = async (req, res) => {
   res.status(200).send(listByName);
 };
 
-export { hanldeGetListPic, handleListByName };
+const handleDetailPicAndUser = async (req, res) => {
+  let { picture_id } = req.params;
+
+  let dataPic = await prisma.pictures.findFirst({
+    where: {
+      picture_id: +picture_id,
+    },
+  });
+
+  if (!dataPic) {
+    res.status(404).send("Picture not exsited");
+    return;
+  }
+
+  let resultData = await prisma.pictures.findFirst({
+    where: {
+      picture_id: +picture_id,
+    },
+    include: {
+      users: {
+        select: {
+          user_id: true,
+          name: true,
+          email: true,
+          age: true,
+          avatar: true,
+        },
+      },
+    },
+  });
+  res.status(200).send(resultData);
+};
+
+export { hanldeGetListPic, handleListByName, handleDetailPicAndUser };
