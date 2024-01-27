@@ -2,7 +2,7 @@ USER :
 + SingUp -POST- (check_by_Thái)
 + Login -POST- (check_by_Thái)
 + UpdateUser -POST- (check_by_Thái)
-+ get_detailUser   -GET-    (cần login check token)
++ get_detailUser   -GET-  (check_by_Thái)  (cần login check token)
 + UploadAvatar -POST- (check_by_Thái) (làm thêm)
 
 

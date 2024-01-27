@@ -1,6 +1,7 @@
 import express from "express";
 import {
   handlUpdateUser,
+  handleDetailUser,
   handleLogin,
   handleSignUp,
   handleUploadAvatar,
@@ -19,5 +20,6 @@ userRoutes.post(
   handleUploadAvatar
 );
 userRoutes.put("/update-user", verifyToken, handlUpdateUser);
+userRoutes.get("/detail-user", verifyToken, handleDetailUser);
 
 export default userRoutes;

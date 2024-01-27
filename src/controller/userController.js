@@ -138,4 +138,23 @@ const handlUpdateUser = async (req, res) => {
 
   res.status(201).send("Update Success");
 };
-export { handleLogin, handleSignUp, handleUploadAvatar, handlUpdateUser };
+
+const handleDetailUser = async (req, res) => {
+  let { token } = req.headers;
+  let isValidUser = checkToken(token);
+  let { user_id } = isValidUser.deCode;
+
+  let dataUser = await prisma.users.findFirst({
+    where: {
+      user_id: +user_id,
+    },
+  });
+  res.status(200).send(dataUser);
+};
+export {
+  handleLogin,
+  handleSignUp,
+  handleUploadAvatar,
+  handlUpdateUser,
+  handleDetailUser,
+};
