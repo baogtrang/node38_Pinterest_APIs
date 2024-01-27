@@ -1,4 +1,5 @@
 import prisma from "../config/connect.config.js";
+import { checkToken } from "../config/jwt.js";
 
 const hanldeGetListPic = async (req, res) => {
   let listImg = await prisma.pictures.findMany();
@@ -51,4 +52,23 @@ const handleDetailPicAndUser = async (req, res) => {
   res.status(200).send(resultData);
 };
 
-export { hanldeGetListPic, handleListByName, handleDetailPicAndUser };
+const handleListCreateByUser = async (req, res) => {
+  let { token } = req.headers;
+  let isValidUser = checkToken(token);
+  let { user_id } = isValidUser.deCode;
+
+  let resultData = await prisma.users.findFirst({
+    where: {
+      user_id,
+    },
+    include: { pictures: true },
+  });
+  res.status(200).send(resultData);
+};
+
+export {
+  hanldeGetListPic,
+  handleListByName,
+  handleDetailPicAndUser,
+  handleListCreateByUser,
+};

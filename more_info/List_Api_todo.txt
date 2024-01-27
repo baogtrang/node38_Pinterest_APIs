@@ -11,7 +11,7 @@ Picture :
 + get_list_picture_by_namePicture -GET-  (check_by_Thái)	(ko cần login)
 + get_detailPicture_And_detailUser_by_pictureId   -GET-  (check_by_Thái)  (ko cần login ko show password)
 + add_picture_by_user    -POST-	(cần login check token)
-+ get_listPicture_create_by_userID   -GET-    (cần login check token, lấy danh sách ảnh đã tạo by user_id)
++ get_listPicture_create_by_userID   -GET-  (check_by_Thái)   (cần login check token, lấy danh sách ảnh đã tạo by user_id)
 + delete_pictureID_by_userID   -DELETE-     (cần login check token)
 
 Comment :  
