@@ -22,7 +22,7 @@ body: {
 
 
 
-Api UploadAvatar: POST 
+Api UploadAvatar: POST (need login)
 http://localhost:3639/user/upload_avatar
 
 headers: {
@@ -34,7 +34,7 @@ body: {
 
 
 
-Api UpdateUser: PUT
+Api UpdateUser: PUT  (need login)
 http://localhost:3639/user/update-user
 
 headers: {
@@ -42,7 +42,7 @@ headers: {
 }
 
 body: {
-    "email": null,           email default value null
+    "email": null,           email default value null or not fill in
     "pass_word": 13639,      
     "age": 31,
     "name": "Phan Nhứt Thái"
@@ -56,5 +56,13 @@ http://localhost:3639/picture/get-list
 Api GetListPictureByName: GET
 http://localhost:3639/picture/list-by-name?fillter=keywork
 
-Api GetDetail_Picture_and_User_by_picture_id  GET
+Api GetDetail_Picture_and_User_by_picture_id:  GET
 http://localhost:3639/picture/detail-pictureAndUser/picture_id
+
+
+Api list_Save_Picture_by_User:  GET  (need login)
+http://localhost:3639/picture/list-create-by-user
+
+headers: {
+    token: "your_token"
+}
