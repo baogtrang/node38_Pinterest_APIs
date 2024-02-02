@@ -14,8 +14,8 @@ Picture :
 + delete_pictureID_by_userID   -DELETE-  (check_by_Thái)   (cần login check token)
 
 Comment :  
-+ get_detailComment_by_pictureId   -GET-   (ko cần login hay check token, lấy thông tin bình luận ảnh theo picture_id)
-+ add_comment_picture_by_user   -POST-   (cần login check token, thêm comment cho ảnh)
++ getCommentsByPicture   -GET- (done by Bao)   (ko cần login hay check token, lấy thông tin bình luận ảnh theo picture_id)
++ addCommentToPicturer   -POST- (done by Bao)  (cần login check token, thêm comment cho ảnh)
 
 Save_Picture :  
 + get_detailSave_picture_by_user  -GET- (cần login check token, kiểm tra đã save hay chưa(để hỏi lại mentor))
