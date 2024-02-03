@@ -15,18 +15,19 @@ const handleLogin = async (req, res) => {
     return;
   }
 
-  // let passwordDecode = bcrypt.compareSync(
-  //   String(pass_word),
-  //   dataEmail.pass_word
-  // );
-  // if (!passwordDecode) {
-  //   res.status(404).send("PassWord not correct");
-  //   return;
-  // }
-  if (pass_word !== dataEmail.pass_word) {
+  let passwordDecode = bcrypt.compareSync(
+    String(pass_word),
+    dataEmail.pass_word
+  );
+  if (!passwordDecode) {
     res.status(404).send("PassWord not correct");
     return;
   }
+
+  // if (pass_word !== dataEmail.pass_word) {
+  //   res.status(404).send("PassWord not correct");
+  //   return;
+  // }
 
   let user_id = dataEmail.user_id;
   let payload = {
