@@ -1,6 +1,9 @@
 import express from "express";
 
-import { checkPictureSaved } from "../controller/savedPicturesController.js";
+import {
+  checkPictureSaved,
+  getPicListByUserId,
+} from "../controller/savedPicturesController.js";
 import { verifyToken } from "../config/jwt.js";
 
 const savedPicturesRoutes = express.Router();
@@ -10,5 +13,7 @@ savedPicturesRoutes.get(
   verifyToken,
   checkPictureSaved
 );
+
+savedPicturesRoutes.get("/:user_id/pictures", verifyToken, getPicListByUserId);
 
 export default savedPicturesRoutes;

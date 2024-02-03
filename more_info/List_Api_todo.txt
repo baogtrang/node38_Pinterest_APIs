@@ -18,5 +18,5 @@ Comment :
 + addCommentToPicture   -POST- (done by Bao)  (cần login check token, thêm comment cho ảnh)
 
 Save_Picture :  
-+ checkPictureSaved  -GET- (cần login check token, kiểm tra đã save hay chưa(để hỏi lại mentor))
-+ get_picture_list_saved_by_userid   -GET-  (cần login check token, lấy danh sách ảnh đã lưu by user_id)
++ checkPictureSaved  -GET- (done by Bao) (cần login check token, kiểm tra đã save hay chưa(để hỏi lại mentor))
++ getPicListByUserId  -GET- (done by Bao) (cần login check token, lấy danh sách ảnh đã lưu by user_id)
