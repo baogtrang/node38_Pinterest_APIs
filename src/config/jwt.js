@@ -5,7 +5,7 @@ dotenv.config();
 const secret_key = process.env.KEY_SECRET_JWT;
 
 const createToken = (data) => {
-  return jwt.sign(data, secret_key, { expiresIn: "5h" });
+  return jwt.sign(data, secret_key, { expiresIn: "1y" });
 };
 
 const checkToken = (token) => {
@@ -49,6 +49,9 @@ const verifyToken = async (req, res, next) => {
     res.status(404).send("This Token is not true");
     return;
   }
+  // Attach user_id to the request object
+  req.user_id = isValidToken.deCode.user_id;
+
   next();
 };
 export { createToken, verifyToken, checkToken };

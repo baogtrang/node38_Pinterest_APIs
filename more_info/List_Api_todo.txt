@@ -5,7 +5,6 @@ USER :
 + get_detailUser   -GET-  (check_by_Thái)  (cần login check token)
 + UploadAvatar -POST- (check_by_Thái) (làm thêm)
 
-
 Picture :  
 + get_list_picture -GET- (check_by_Thái)   (ko cần login)
 + get_list_picture_by_namePicture -GET-  (check_by_Thái)	(ko cần login)
@@ -15,10 +14,9 @@ Picture :
 + delete_pictureID_by_userID   -DELETE-  (check_by_Thái)   (cần login check token)
 
 Comment :  
-+ get_detailComment_by_pictureId   -GET-   (ko cần login hay check token, lấy thông tin bình luận ảnh theo picture_id)
-+ add_comment_picture_by_user   -POST-   (cần login check token, thêm comment cho ảnh)
-
++ getCommentsByPicture   -GET- (done by Bao)   (ko cần login hay check token, lấy thông tin bình luận ảnh theo picture_id)
++ addCommentToPicture   -POST- (done by Bao)  (cần login check token, thêm comment cho ảnh)
 
 Save_Picture :  
-+ get_detailSave_picture_by_user  -GET- (cần login check token, kiểm tra đã save hay chưa(để hỏi lại mentor))
-+ get_listPicture_save_by_userid   -GET-  (cần login check token, lấy danh sách ảnh đã lưu by user_id)
++ checkPictureSaved  -GET- (done by Bao) (cần login check token, kiểm tra đã save hay chưa(để hỏi lại mentor))
++ getPicListByUserId  -GET- (done by Bao) (cần login check token, lấy danh sách ảnh đã lưu by user_id)
