@@ -15,8 +15,8 @@ Picture :
 
 Comment :  
 + getCommentsByPicture   -GET- (done by Bao)   (ko cần login hay check token, lấy thông tin bình luận ảnh theo picture_id)
-+ addCommentToPicturer   -POST- (done by Bao)  (cần login check token, thêm comment cho ảnh)
++ addCommentToPicture   -POST- (done by Bao)  (cần login check token, thêm comment cho ảnh)
 
 Save_Picture :  
-+ get_detailSave_picture_by_user  -GET- (cần login check token, kiểm tra đã save hay chưa(để hỏi lại mentor))
-+ get_listPicture_save_by_userid   -GET-  (cần login check token, lấy danh sách ảnh đã lưu by user_id)
++ checkPictureSaved  -GET- (cần login check token, kiểm tra đã save hay chưa(để hỏi lại mentor))
++ get_picture_list_saved_by_userid   -GET-  (cần login check token, lấy danh sách ảnh đã lưu by user_id)

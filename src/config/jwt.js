@@ -49,6 +49,7 @@ const verifyToken = async (req, res, next) => {
     res.status(404).send("This Token is not true");
     return;
   }
+  // Attach user_id to the request object
   req.user_id = isValidToken.deCode.user_id;
 
   next();
