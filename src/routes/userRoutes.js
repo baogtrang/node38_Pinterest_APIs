@@ -14,7 +14,7 @@ const userRoutes = express.Router();
 userRoutes.post("/login", handleLogin);
 userRoutes.post("/signup", handleSignUp);
 userRoutes.post(
-  "/upload_avatar",
+  "/upload-avatar",
   verifyToken,
   uploadCloud.single("file"),
   handleUploadAvatar

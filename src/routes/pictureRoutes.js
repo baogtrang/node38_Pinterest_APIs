@@ -1,4 +1,5 @@
 import express from "express";
+import { verifyToken } from "../config/jwt.js";
 import {
   handleCreatePictureByUser,
   handleDeletePic,
@@ -7,8 +8,6 @@ import {
   handleListCreateByUser,
   hanldeGetListPic,
 } from "../controller/pictureController.js";
-import { verifyToken } from "../config/jwt.js";
-import uploadCloud from "../config/cloudinary.config.js";
 
 const pictureRoutes = express.Router();
 

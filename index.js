@@ -6,7 +6,6 @@ dotenv.config();
 let portBE = process.env.PORT_BE;
 
 const app = express();
-const port = 8080;
 
 app.use(express.json());
 app.use(express.static("."));
@@ -17,6 +16,6 @@ app.get("/", (req, res) => {
   res.send("Connect BE Success");
 });
 
-app.listen(port, () => {
-  console.log(`Start Working BE With Port : ${port}`);
+app.listen(portBE, () => {
+  console.log(`Start Working BE With Port : ${portBE}`);
 });

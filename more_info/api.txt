@@ -25,7 +25,7 @@ http://localhost:3639/user/detail-user
 
 
 Api UploadAvatar: POST (need login)
-http://localhost:3639/user/upload_avatar
+http://localhost:3639/user/upload-avatar
 
 headers: {
     token: "your_token"
@@ -59,7 +59,7 @@ Api GetListPictureByName: GET
 http://localhost:3639/picture/list-by-name?fillter=keywork
 
 Api GetDetail_Picture_and_User_by_picture_id:  GET
-http://localhost:3639/picture/detail-pictureAndUser/picture_id
+http://localhost:3639/picture/detail-pictureAndUser/:picture_id
 
 
 Api list_Save_Picture_by_User:  GET  (need login)
@@ -82,8 +82,31 @@ body: {                               valid cannot not null, "", undefine, !== s
 }
 
 Api delete_picture_by_user: DELETE (need login)
-http://localhost:3639/picture/delete-picture-by-user/picture_id
+http://localhost:3639/picture/delete-picture-by-user/:picture_id
 
 headers: {
     token: "your_token"
 }
+
+Api Add_comment_by_user:    POST (need login)
+http://localhost:8080/comment/:picture_id/add-comment
+
+headers: {
+    token: "your_token"
+}
+
+body : {
+    "comment_id": 22,
+    "user_id": 2,
+    "picture_id": 1,
+    "content": "hay lắm nha"
+}
+
+Api Get_list_comment_by_picture_id :     GET 
+http://localhost:8080/comment/:picture_id/comment-detail
+
+Api Get_Info_save_picture_by_user :      GET
+http://localhost:8080/saved-pictures/:picture_id/is-saved
+
+Api Get_list_Pictrue_save_by_user:    GET
+http://localhost:8080/saved-pictures/:user_id/pictures
