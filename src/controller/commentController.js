@@ -30,8 +30,10 @@ const addCommentToPicture = async (req, res) => {
   const { picture_id } = req.params;
   const { content } = req.body;
   const user_id = req.user_id;
-  // Create a full ISO string with a default time (midnight)
   const date = new Date();
+  if (!content || content.trim() === "") {
+    return res.status(400).json({ Error: "Content cannot be empty" });
+  }
   try {
     const comment = await prisma.comments.create({
       data: {
